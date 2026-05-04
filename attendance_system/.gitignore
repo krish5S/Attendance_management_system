@@ -1,0 +1,77 @@
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# ===========================
+# Virtual Environment
+# ===========================
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# ===========================
+# Environment Variables (NEVER commit secrets)
+# ===========================
+.env
+*.env
+
+# ===========================
+# Django
+# ===========================
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static/
+
+# ===========================
+# Database
+# ===========================
+*.sql
+*.dump
+
+# ===========================
+# IDE / Editor
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===========================
+# Testing & Coverage
+# ===========================
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# ===========================
+# Migrations (optional — most teams commit these)
+# Keep this COMMENTED unless you know what you're doing
+# ===========================
+# */migrations/*.py
+# !*/migrations/__init__.py

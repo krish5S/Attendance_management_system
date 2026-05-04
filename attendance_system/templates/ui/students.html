@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Students | Attendance Management System{% endblock %}
+{% block page_title %}Student Directory{% endblock %}
+{% block page_subtitle %}Manage classes and student records with a clear UI shell.{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <h2>Quick Actions</h2>
+  <div class="button-row">
+    <a class="button primary" href="/api/students/">View Students API</a>
+    <a class="button" href="/api/students/classes/">View Classes API</a>
+    <a class="button" href="/ui/register/">Add New Student</a>
+  </div>
+</section>
+
+<section class="grid">
+  <article class="card">
+    <h2>Classes</h2>
+    <p>Create and maintain class groups.</p>
+    <ul class="links">
+      <li><a href="/api/students/classes/">Class List <span>GET</span></a></li>
+      <li><a href="/api/students/classes/1/">Class Detail <span>ID</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Students</h2>
+    <p>Browse and update student profiles.</p>
+    <ul class="links">
+      <li><a href="/api/students/">Student List <span>GET</span></a></li>
+      <li><a href="/api/students/1/">Student Detail <span>ID</span></a></li>
+      <li><a href="/api/students/class/1/">Students By Class <span>ID</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Data Imports</h2>
+    <p>Bulk ingest can be wired to a future file upload flow.</p>
+    <ul class="links">
+      <li><a href="/api/students/">Import Students <span>POST</span></a></li>
+    </ul>
+  </article>
+</section>
+{% endblock %}

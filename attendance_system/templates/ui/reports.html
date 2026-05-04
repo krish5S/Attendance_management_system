@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Reports | Attendance Management System{% endblock %}
+{% block page_title %}Reports & Analytics{% endblock %}
+{% block page_subtitle %}Review summaries, alerts, and student insights.{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <h2>Quick Reports</h2>
+  <div class="button-row">
+    <a class="button primary" href="/api/reports/dashboard/">Dashboard API</a>
+    <a class="button" href="/api/reports/daily/">Daily Report API</a>
+    <a class="button" href="/api/reports/monthly/">Monthly Report API</a>
+  </div>
+</section>
+
+<section class="grid">
+  <article class="card">
+    <h2>Summary</h2>
+    <p>Use dashboard cards for trend summaries and KPIs.</p>
+    <ul class="links">
+      <li><a href="/api/reports/dashboard/">Dashboard <span>GET</span></a></li>
+      <li><a href="/api/reports/low-attendance/">Low Attendance <span>GET</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Student Reports</h2>
+    <p>Review attendance by student or class.</p>
+    <ul class="links">
+      <li><a href="/api/reports/student/1/">Student Report <span>ID</span></a></li>
+      <li><a href="/api/reports/class/1/">Class Report <span>ID</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Cadence</h2>
+    <p>Daily and monthly views for attendance health.</p>
+    <ul class="links">
+      <li><a href="/api/reports/daily/">Daily Report <span>GET</span></a></li>
+      <li><a href="/api/reports/monthly/">Monthly Report <span>GET</span></a></li>
+    </ul>
+  </article>
+</section>
+{% endblock %}

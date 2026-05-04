@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Attendance Management System{% endblock %}
+{% block page_title %}Operations Dashboard{% endblock %}
+{% block page_subtitle %}Snapshot of attendance trends and system activity.{% endblock %}
+
+{% block content %}
+<section class="grid">
+  <article class="card">
+    <h2>Today</h2>
+    <p>Track daily attendance coverage and absences.</p>
+    <ul class="links">
+      <li><a href="/api/reports/daily/">Daily Report <span>GET</span></a></li>
+      <li><a href="/api/attendance/sessions/">Active Sessions <span>GET</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Monthly View</h2>
+    <p>Compare month-to-month attendance patterns.</p>
+    <ul class="links">
+      <li><a href="/api/reports/monthly/">Monthly Report <span>GET</span></a></li>
+      <li><a href="/api/reports/low-attendance/">Low Attendance <span>GET</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Directory</h2>
+    <p>Quick access to students and classes.</p>
+    <ul class="links">
+      <li><a href="/api/students/classes/">Classes <span>GET</span></a></li>
+      <li><a href="/api/students/">Students <span>GET</span></a></li>
+    </ul>
+  </article>
+</section>
+
+<section class="panel">
+  <h2>Highlights</h2>
+  <p>Use the API dashboard endpoint to populate cards and charts in this view.</p>
+  <ul class="links">
+    <li><a href="/api/reports/dashboard/">Dashboard API <span>GET</span></a></li>
+  </ul>
+</section>
+{% endblock %}

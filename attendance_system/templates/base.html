@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Attendance Management System{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-1: #0d1b2a;
+      --bg-2: #1b263b;
+      --bg-3: #2b3a55;
+      --ink: #f7f3e8;
+      --muted: #d4c8b3;
+      --accent: #f4a261;
+      --accent-2: #e76f51;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.18);
+      --glow: rgba(244, 162, 97, 0.35);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 10% 10%, #2b3758 0%, transparent 60%),
+        radial-gradient(800px 600px at 80% 20%, #3b2b46 0%, transparent 55%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 55%, var(--bg-3));
+      min-height: 100vh;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+      z-index: 0;
+    }
+
+    header {
+      padding: 48px 8vw 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      max-width: 720px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 600;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-2);
+    }
+
+    nav a.primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #1b140f;
+    }
+
+    main {
+      padding: 0 8vw 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: floatIn 0.8s ease forwards;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(240px 120px at 0% 0%, var(--glow), transparent 70%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 16px;
+    }
+
+    .links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .links a {
+      color: var(--ink);
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .links a span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .links a:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-2);
+      background: rgba(231, 111, 81, 0.12);
+    }
+
+    .panel {
+      background: rgba(5, 10, 20, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-top: 28px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .field input,
+    .field select {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--ink);
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 600;
+    }
+
+    .button.primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #1b140f;
+    }
+
+    footer {
+      padding: 24px 8vw 60px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding-top: 40px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .button-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header>
+    <h1 class="title">{% block page_title %}Attendance Management System{% endblock %}</h1>
+    <p class="subtitle">{% block page_subtitle %}Visual UI shell for the attendance platform.{% endblock %}</p>
+    <nav>
+      <a class="primary" href="/">Home</a>
+      <a href="/ui/login/">Login</a>
+      <a href="/ui/register/">Register</a>
+      <a href="/ui/dashboard/">Dashboard</a>
+      <a href="/ui/students/">Students</a>
+      <a href="/ui/attendance/">Attendance</a>
+      <a href="/ui/reports/">Reports</a>
+      <a href="/admin/">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>These pages are static UI shells. Connect API logic when ready.</p>
+  </footer>
+</body>
+</html>

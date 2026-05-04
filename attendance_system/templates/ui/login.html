@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Login | Attendance Management System{% endblock %}
+{% block page_title %}Sign In{% endblock %}
+{% block page_subtitle %}Secure access for administrators, teachers, and staff.{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <form>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="name@school.org" />
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Enter your password" />
+    </div>
+    <div class="button-row">
+      <button class="button primary" type="button">Sign In</button>
+      <a class="button" href="/ui/register/">Create Account</a>
+      <a class="button" href="/admin/">Admin Login</a>
+    </div>
+  </form>
+</section>
+
+<section class="grid">
+  <article class="card">
+    <h2>Token Access</h2>
+    <p>Use the API endpoint for JWT tokens if you are integrating another client.</p>
+    <ul class="links">
+      <li><a href="/api/auth/login/">Login API <span>POST</span></a></li>
+      <li><a href="/api/auth/token/refresh/">Token Refresh <span>POST</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Security Notes</h2>
+    <p>Passwords and tokens are managed by the backend. This page is a UI placeholder.</p>
+    <ul class="links">
+      <li><a href="/api/auth/profile/">Profile <span>GET</span></a></li>
+      <li><a href="/api/auth/change-password/">Change Password <span>POST</span></a></li>
+    </ul>
+  </article>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance | Attendance Management System{% endblock %}
+{% block page_title %}Attendance Sessions{% endblock %}
+{% block page_subtitle %}Track daily sessions and finalize attendance data.{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <h2>Session Controls</h2>
+  <div class="button-row">
+    <a class="button primary" href="/api/attendance/sessions/">Open Sessions API</a>
+    <a class="button" href="/api/attendance/bulk-mark/">Bulk Mark API</a>
+    <a class="button" href="/api/attendance/">Attendance List API</a>
+  </div>
+</section>
+
+<section class="grid">
+  <article class="card">
+    <h2>Daily Entries</h2>
+    <p>Capture individual attendance records.</p>
+    <ul class="links">
+      <li><a href="/api/attendance/">Attendance List <span>GET</span></a></li>
+      <li><a href="/api/attendance/1/">Attendance Detail <span>ID</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Bulk Updates</h2>
+    <p>Apply attendance marks for entire classes at once.</p>
+    <ul class="links">
+      <li><a href="/api/attendance/bulk-mark/">Bulk Mark <span>POST</span></a></li>
+      <li><a href="/api/attendance/sessions/">Session List <span>GET</span></a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h2>Finalize</h2>
+    <p>Close sessions and lock records after review.</p>
+    <ul class="links">
+      <li><a href="/api/attendance/sessions/1/finalize/">Finalize Session <span>ID</span></a></li>
+    </ul>
+  </article>
+</section>
+{% endblock %}

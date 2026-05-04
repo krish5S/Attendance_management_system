@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Register | Attendance Management System{% endblock %}
+{% block page_title %}Create Account{% endblock %}
+{% block page_subtitle %}Invite new staff or students to access the platform.{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <form>
+    <div class="field">
+      <label for="name">Full Name</label>
+      <input id="name" type="text" placeholder="First and last name" />
+    </div>
+    <div class="field">
+      <label for="role">Role</label>
+      <select id="role">
+        <option>Teacher</option>
+        <option>Administrator</option>
+        <option>Staff</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="name@school.org" />
+    </div>
+    <div class="field">
+      <label for="password">Temporary Password</label>
+      <input id="password" type="password" placeholder="Set a temporary password" />
+    </div>
+    <div class="button-row">
+      <button class="button primary" type="button">Create Account</button>
+      <a class="button" href="/ui/login/">Back to Login</a>
+    </div>
+  </form>
+</section>
+
+<section class="grid">
+  <article class="card">
+    <h2>Registration API</h2>
+    <p>Use this endpoint to create users programmatically.</p>
+    <ul class="links">
+      <li><a href="/api/auth/register/">Register API <span>POST</span></a></li>
+      <li><a href="/api/auth/users/">User Directory <span>GET</span></a></li>
+    </ul>
+  </article>
+</section>
+{% endblock %}
